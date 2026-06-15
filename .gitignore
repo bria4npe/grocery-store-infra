@@ -1,0 +1,7 @@
+.terraform/
+tfplan
+*.tfstate
+*.tfstate.backup
+*.tfvars
+.env.ps1
+.env.sh
