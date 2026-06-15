@@ -8,11 +8,11 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "grocery-store-terraform-state"
-    key            = "grocery-store/staging/terraform.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "grocery-store-terraform-locks"
-    encrypt        = true
+    bucket       = "grocery-store-terraform-state"
+    key          = "grocery-store/staging/terraform.tfstate"
+    region       = "us-east-1"
+    use_lockfile = true
+    encrypt      = true
   }
 }
 

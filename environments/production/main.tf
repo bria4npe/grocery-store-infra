@@ -8,11 +8,11 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "grocery-store-terraform-state"
-    key            = "grocery-store/production/terraform.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "grocery-store-terraform-locks"
-    encrypt        = true
+    bucket       = "grocery-store-terraform-state"
+    key          = "grocery-store/production/terraform.tfstate"
+    region       = "us-east-1"
+    use_lockfile = true
+    encrypt      = true
   }
 }
 
@@ -55,8 +55,9 @@ module "eks" {
   environment  = var.environment
   vpc_id       = module.vpc.vpc_id
   subnet_ids   = module.vpc.private_subnets
-  min_size     = 2
-  max_size     = 6
-  desired_size = 2
-  tags         = local.tags
+  instance_types = ["t3.medium", "t3.large", "t3a.medium"]
+  min_size       = 2
+  max_size       = 6
+  desired_size   = 2
+  tags           = local.tags
 }
